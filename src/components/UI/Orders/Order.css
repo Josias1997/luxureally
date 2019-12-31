@@ -1,0 +1,20 @@
+.Order {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	background-color: #FF6107;
+	width: 120px;;
+	height: 40px;
+	border-radius: 90px;
+	position: fixed;
+	z-index: 10;
+	bottom: 4%;
+	right: 278px;
+	cursor: pointer;
+}
+
+.Order:hover {
+	background-color: orange;
+	padding: 5px;
+}

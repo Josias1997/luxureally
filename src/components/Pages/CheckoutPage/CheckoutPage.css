@@ -1,0 +1,30 @@
+.Checkout {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	height: 100%;
+}
+
+.Checkout .summary {
+	width: 65%;
+	height: 50px;
+	background-color: #FF6107;
+	color: white;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 10px;
+}
+
+.Checkout .summary p {
+	margin-top: 10px;
+}
+
+.Checkout .textarea {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+textarea {
+	width: 100%;
+}
