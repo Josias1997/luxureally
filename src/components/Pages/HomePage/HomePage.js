@@ -47,7 +47,6 @@ const HomePage = (props) => {
 
 const mapStateToProps = state => {
 	return {
-		categories: state.food.categories,
 		qrCodeScanned: state.food.qrCodeScanned,
 	}
 };
