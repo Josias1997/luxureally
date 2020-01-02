@@ -108,3 +108,9 @@ export const initializeRestaurantTable = (restaurantId, tableId) => {
 		}
 	}
 };
+
+export const reset = () => {
+	return {
+		type: actionTypes.RESET_DATA,
+	}
+}

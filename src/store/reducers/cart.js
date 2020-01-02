@@ -36,6 +36,8 @@ const reducer = (state = initialState, action) => {
 			};
 		case actionTypes.REMOVE_ITEMS:
 			return initialState;
+		case actionTypes.RESET_DATA:
+			return initialState;
 		default:
 			return state;
 	}

@@ -98,6 +98,8 @@ const reducer = (state = initialState, action) => {
 			return deleteOrder(state, action);
 		case actionTypes.REMOVE_ALL_ORDERS:
 			 return removeAllOrders(state, action);
+		case actionTypes.RESET_DATA:
+			return initialState;
 		default:
 			return state;
 	}

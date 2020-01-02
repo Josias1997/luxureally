@@ -14,3 +14,5 @@ export const REMOVE_ITEMS = 'REMOVE_ITEMS';
 export const REMOVE_ALL_ORDERS = 'REMOVE_ALL_ORDERS';
 export const DELETE_ORDER = 'DELETE_ORDER';
 
+export const RESET_DATA = 'RESET_DATA';
+

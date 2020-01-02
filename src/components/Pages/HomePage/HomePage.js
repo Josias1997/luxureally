@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Scanner from '../../UI/Scanner/Scanner';
 import CartItem from '../../UI/CartItem/CartItem';
-import RemoveItems from '../../UI/RemoveItems/RemoveItems';
-import Order from '../../UI/Orders/Order';
+import RemoveItems from './../../UI/RemoveItems/RemoveItems';
+import Order from './../../UI/Orders/Order';
+import Logout from './../../UI/Logout/Logout';
 import BackgroundImage from '../../UI/BackgroundImage/BackgroundImage';
 import Header from '../../UI/Header/Header';
 import Menu from '../../UI/Menu/Menu';
@@ -27,6 +28,7 @@ const HomePage = (props) => {
        	<Order history={props.history} />
        	<CartItem history={props.history} />
        	<RemoveItems />
+       	<Logout />
 		<Header openQRScanner={openQRScanner} />
 		<BackgroundImage openQRScanner={openQRScanner} />
 		<div className="goto-here">
@@ -45,5 +47,6 @@ const mapStateToProps = state => {
 		qrCodeScanned: state.food.qrCodeScanned,
 	}
 };
+
 
 export default connect(mapStateToProps)(HomePage);
