@@ -4,9 +4,9 @@
 	justify-content: center;
 	align-items: center;
 	background-color: #FF6107;
-	width: 120px;
+	width: 50px;
 	height: 40px;
-	border-radius: 90px;
+	border-radius: 100px;
 	position: fixed;
 	z-index: 10;
 	bottom: 4%;
@@ -14,9 +14,15 @@
 	cursor: pointer;
 }
 
-.CartItem:hover {
+.CartItem:hover  {
 	background-color: orange;
 	padding: 5px;
+	width: 100px;
+}
+
+.CartItem:hover .notif {
+	display: inline-block;
+	font-size: 12px;
 }
 
 .items-count {
@@ -24,4 +30,8 @@
 	font-size: 15px;
 	color: black;
 	font-weight: bold;
+}
+
+.notif {
+	display: none;
 }

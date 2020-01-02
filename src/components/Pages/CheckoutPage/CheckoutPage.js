@@ -97,7 +97,7 @@ const CheckoutPage = (props) => {
                 </div>
             <div className="col-md-3 text-center summary">Total Price: {totalPrice} DHS Total Meals: {totalQuantity}</div>
             <div className="col-md-12 text-center">
-                <p><button className="btn btn-primary btn-outline btn-md" onClick={placeOrder}>Place Order</button></p>
+                <p><button className="btn btn-secondary" onClick={placeOrder}>Place Order</button></p>
             </div>
 		</div>
 	)
