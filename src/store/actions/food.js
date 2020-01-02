@@ -39,7 +39,7 @@ export const requestFail = (error) => {
 export const fetchFood = (restaurantId) => {
 	return dispatch => {
 		dispatch(requestStart());
-		axios.get('/luxureally/api/foods/' + restaurantId)
+		axios.get('/foods/' + restaurantId)
 		.then(({data}) => {
 			dispatch(fetchFoodSuccess(data));
 		}).catch(error => {
@@ -51,7 +51,7 @@ export const fetchFood = (restaurantId) => {
 export const postOrder = (order) => {
 	return dispatch => {
 		dispatch(requestStart());
-		axios.post('/luxureally/api/place-order/', order)
+		axios.post('/place-order/', order)
 		.then(({data}) => {
 			dispatch(postOrderSuccess(data));
 		}).catch(error => {
@@ -63,7 +63,7 @@ export const postOrder = (order) => {
 export const ordersStatus = (orderId) => {
 	return dispatch => {
 		dispatch(requestStart());
-		axios.get('/luxureally/api/check-status/' + orderId)
+		axios.get('/check-status/' + orderId)
 		.then(({data}) => {
 			dispatch(getOrdersStatus(data));
 		}).catch(error => {

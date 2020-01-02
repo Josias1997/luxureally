@@ -31,7 +31,6 @@ ALLOWED_HOSTS = ['https://luxureally.herokuapp.com/', 'localhost']
 # Application definition
 
 INSTALLED_APPS = [
-    'material.admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -64,7 +63,7 @@ ROOT_URLCONF = 'luxureally.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'build')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

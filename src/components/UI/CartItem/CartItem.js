@@ -4,10 +4,16 @@ import { connect } from 'react-redux';
 
 const CartItem = props => {
 	return (
-		<div className='CartItem' onClick={() => {props.history.push('/checkout')}}>
-			<div className="icon" style={{color: 'white', fontSize: '40px'}}><i className="flaticon-cutlery"></i></div>
-			<div className="items-count">{props.totalQuantity}</div>
+		<a href="/checkout">
+		<div className='CartItem'>
+		    <span className="cart-icon" style={{
+		    	color: 'white'
+		    }}>
+                <i className="ti ti-shopping-cart"></i>
+                <span className="notification notif">{props.totalQuantity}</span>
+            </span>
 		</div>
+		</a>
 	)
 };
 
