@@ -24,3 +24,7 @@ yarn-error.log*
 /venv
 /venv/*
 db.sqlite3
+
+/.idea
+/luxureally/__pycache__
+/luxureally_api/__pycache__
