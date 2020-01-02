@@ -14,11 +14,11 @@ const HomePage = (props) => {
 
 	const openQRScanner = () => {
 		setDisplay(true);
-	}
+	};
 
 	const closeQRScanner = () => {
 		setDisplay(false)
-	}
+	};
 	return (
 		<>
 		 <Scanner display={display ? 'block' : 'none'} 
@@ -27,19 +27,14 @@ const HomePage = (props) => {
        	<Order history={props.history} />
        	<CartItem history={props.history} />
        	<RemoveItems />
-	<div id="colorlib-page">
 		<Header openQRScanner={openQRScanner} />
 		<BackgroundImage openQRScanner={openQRScanner} />
-		<div className="goto-here"></div>
+		<div className="goto-here">
+
+		</div>
 		{
-			!props.qrCodeScanned ? <div className="colorlib-menu">
-				<div className="container col-md-12 text-center">
-					<button className="btn btn-primary btn-lg btn-learn" onClick={() => openQRScanner()}>
-					Scan QR Code to view menu
-				</button></div></div> : <Menu />
+			props.qrCodeScanned ? <Menu /> : null
 		}
-		
-	</div>
 	</>
 	)
 };

@@ -41,8 +41,10 @@ export const fetchFood = (restaurantId) => {
 		dispatch(requestStart());
 		axios.get('/foods/' + restaurantId)
 		.then(({data}) => {
+			console.log(data);
 			dispatch(fetchFoodSuccess(data));
 		}).catch(error => {
+			console.log(error);
 			dispatch(requestFail(error));
 		})
 	}
@@ -76,14 +78,14 @@ export const deleteAllOrders = () => {
 	return {
 		type: actionTypes.REMOVE_ALL_ORDERS,
 	}
-}
+};
 
 export const deleteOrder = orderId => {
 	return {
 		type: actionTypes.DELETE_ORDER,
 		orderId: orderId,
 	}
-}
+};
 
 export const cancel = (orderId) => {
 	return dispatch => {

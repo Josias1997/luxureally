@@ -15,17 +15,17 @@ import { PersistGate } from 'redux-persist/integration/react'
 const rootReducer = combineReducers({
 	food: foodReducer,
 	cart: cartReducer,
-})
+});
 const persistConfig = {
 	key: 'root',
 	storage,
-}
+};
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-// const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
+const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
-const store = createStore(persistedReducer, compose(
+const store = createStore(persistedReducer, composeEnhancers(
 	applyMiddleware(thunk)
 ));
 
