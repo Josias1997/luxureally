@@ -42,7 +42,7 @@ const Menu = props => {
 							</div>
 							<div className="tab-content">
 								{
-									props.categories.length !== 0 ? props.categories.map((category, index) => {
+									props.categories.length !== undefined ? props.categories.map((category, index) => {
 										return <div role="tabpanel" className={"tab-pane " + (currentCategory === index ? "active" : "")} 
 													id={category.id} key={category.id}>
 													<div className="row">
