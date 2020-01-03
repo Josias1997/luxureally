@@ -20,7 +20,6 @@ const reducer = (state = initialState, action) => {
 					quantity: 1,
 				})
 			}
-			console.log(state.cartItems);
 			return {
 				...state,
 				cartItems: newItems,
@@ -33,6 +32,31 @@ const reducer = (state = initialState, action) => {
 				cartItems: action.items,
 				totalQuantity: action.items.reduce((acc, item) => acc + item.quantity, 0),
 				totalPrice: action.items.reduce((acc, item) => acc + (item.price * item.quantity), 0)
+			};
+		case actionTypes.REMOVE_ITEM:
+			const updatedItems = [...state.cartItems];
+			const itemToDeleteIndex = updatedItems.findIndex(item => item.id === action.id);
+			let itemToDelete = undefined;
+			if (itemToDeleteIndex !== - 1) {
+				itemToDelete = updatedItems.splice(itemToDeleteIndex, 1)[0];
+			}
+			return {
+				...state,
+				cartItems: updatedItems,
+				totalQuantity: state.totalQuantity - itemToDelete.quantity,
+				totalPrice: updatedItems.reduce((acc, item) => acc + (item.price * item.quantity), 0)
+			};
+		case actionTypes.UPDATE_ITEM:
+			const items = [...state.cartItems];
+			const itemToUpdateIndex = items.findIndex(item => item.id === action.data.id);
+			if (itemToUpdateIndex !== -1) {
+				items[itemToUpdateIndex].quantity = action.data.quantity;
+			}
+			return {
+				...state,
+				cartItems: items,
+				totalQuantity: items.reduce((acc, item) => acc + item.quantity, 0),
+				totalPrice: items.reduce((acc, item) => acc + (item.price * item.quantity), 0)
 			};
 		case actionTypes.REMOVE_ITEMS:
 			return initialState;

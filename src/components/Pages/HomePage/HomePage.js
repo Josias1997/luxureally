@@ -3,11 +3,14 @@ import { connect } from 'react-redux';
 import Scanner from '../../UI/Scanner/Scanner';
 import CartItem from '../../UI/CartItem/CartItem';
 import RemoveItems from './../../UI/RemoveItems/RemoveItems';
-import Order from './../../UI/Orders/Order';
+import OrderButton from './../../UI/OrderButton/OrderButton';
 import Logout from './../../UI/Logout/Logout';
 import BackgroundImage from '../../UI/BackgroundImage/BackgroundImage';
 import Header from '../../UI/Header/Header';
 import Menu from '../../UI/Menu/Menu';
+import Form from '../../UI/Form/Form';
+import Checkout from '../../UI/Checkout/Checkout';
+import Orders from '../../UI/Orders/Orders';
 
 const HomePage = (props) => {
 
@@ -22,15 +25,18 @@ const HomePage = (props) => {
 	};
 	return (
 		<>
+		<Form />
 		 <Scanner display={display ? 'block' : 'none'} 
        		closeQRScanner={closeQRScanner} openQRScanner={openQRScanner}
        	/>
-       	<Order history={props.history} />
+       	<OrderButton history={props.history} />
        	<CartItem history={props.history} />
        	<RemoveItems />
        	<Logout />
 		<Header openQRScanner={openQRScanner} />
 		<BackgroundImage openQRScanner={openQRScanner} />
+		<Checkout />
+		<Orders />
 		<div className="goto-here">
 
 		</div>

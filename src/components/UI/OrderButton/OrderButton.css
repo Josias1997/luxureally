@@ -1,4 +1,4 @@
-.Order {
+.OrderButton {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -14,7 +14,7 @@
 	cursor: pointer;
 }
 
-.Order:hover {
+.OrderButton:hover {
 	background-color: orange;
 	padding: 5px;
 	width: 100px;
@@ -24,6 +24,6 @@
 	display: none;
 }
 
-.Order:hover .clipboard-label {
+.OrderButton:hover .clipboard-label {
 	display: inline-block;
 }

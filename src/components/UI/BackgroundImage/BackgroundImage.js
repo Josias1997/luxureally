@@ -15,8 +15,9 @@ const BackgroundImage = (props) => {
                                 <h4 className="text-muted mb-5">Taste it now with our online order!</h4>
                                 <button onClick={() => props.openQRScanner()}
                                    className="btn btn-outline-primary btn-lg"><span>Scan Your QR Code</span></button>
-                                 <button onClick={() => props.openInfoModal()}
-                                   className="btn btn-outline-primary btn-lg"><span>Delivery</span></button>
+                                 <button className="btn btn-outline-primary btn-lg" data-target="#form" data-toggle="modal">
+                                    <span>Delivery</span>
+                                </button>
                             </div>
                         </div>
                     </div>

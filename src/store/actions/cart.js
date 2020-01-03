@@ -19,6 +19,23 @@ export const removeAllItems = () => {
 	return {
 		type: actionTypes.REMOVE_ITEMS,
 	}
-}
+};
+
+export const removeItem = (id) => {
+	return {
+		type: actionTypes.REMOVE_ITEM,
+		id: id,
+	}
+};
+
+export const updateItem = (id, quantity) => {
+	return {
+		type: actionTypes.UPDATE_ITEM,
+		data: {
+			id: id,
+			quantity: quantity
+		},
+	}
+};
 
 	

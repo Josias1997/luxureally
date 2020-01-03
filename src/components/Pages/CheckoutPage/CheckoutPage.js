@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import './CheckoutPage.css';
 import { connect } from 'react-redux';
-import { options, localization } from '../../../utils/settings';
 import { createJsonData } from '../../../utils/Methods/createJsonData';
-import MaterialTable from "material-table";
 import { updateCart } from '../../../store/actions/cart';
 import { postOrder } from '../../../store/actions/food';
 import { withRouter } from 'react-router-dom';
 import Spinner from '../../UI/Spinner/Spinner';
+import MaterialTable from "material-table";
+import { options, localization } from '../../../utils/settings';
 
 const CheckoutPage = (props) => {
 	const { cartItems, updateItems, totalPrice, 

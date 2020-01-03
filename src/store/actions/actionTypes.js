@@ -10,6 +10,8 @@ export const GET_ORDERS_STATUS = 'GET_ORDERS_STATUS';
 export const ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART';
 export const UPDATE_CART_ITEMS = 'UPDATE_CART_ITEMS';
 export const REMOVE_ITEMS = 'REMOVE_ITEMS';
+export const REMOVE_ITEM = 'REMOVE_ITEM';
+export const UPDATE_ITEM = 'UPDATE_ITEM';
 
 export const REMOVE_ALL_ORDERS = 'REMOVE_ALL_ORDERS';
 export const DELETE_ORDER = 'DELETE_ORDER';

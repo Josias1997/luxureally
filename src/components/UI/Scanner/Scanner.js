@@ -16,9 +16,8 @@ const Scanner = props => {
 	}
 	if (!x.current.matches) {
 		style = {
-			width: '40%',
-			marginLeft: '30%',
-			marginTop: '5%',
+			width: '30%',
+			marginLeft: '35%',
 		}
 	}
 

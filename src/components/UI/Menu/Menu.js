@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { FILES_BASE_DIR } from '../../../utils/Constants';
 import Category from './../Category/Category';
 
 const Menu = props => {
@@ -14,9 +13,10 @@ const Menu = props => {
                     		return <Category category={category} key={category.id} foods={category.foods} />
                     	}) : null
                     }
-                    <a href="/checkout" className="panel-cart-action btn btn-secondary btn-block btn-lg">
-                		<span>Go to checkout</span>
-                	</a>
+                    <button className="panel-cart-action btn btn-secondary btn-block btn-lg"
+                    data-target="#checkout" data-toggle="modal">
+                		<span>Checkout</span>
+                	</button>
                     </div>
 
                 </div>
