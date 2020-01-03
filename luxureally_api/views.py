@@ -15,6 +15,7 @@ def foods(request, restaurant_id):
 		category_details = {
 			'id': category.id,
 			'title': category.title,
+			'image': category.image.url
 		}
 		foods_details = []
 		for food in Food.objects.filter(category__id=category.id, is_active=True):

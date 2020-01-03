@@ -16,7 +16,7 @@ const initializeRestaurantTableIds = (state, action) => {
 		restaurantId: action.payload.restaurantId,
 		tableId: action.payload.tableId,
 	})
-}
+};
 
 const requestStart = (state, action) => {
 	return updateObject(state, {
@@ -72,13 +72,13 @@ const deleteOrder = (state, action) => {
 	return updateObject(state, {
 		orders: newOrders
 	})
-}
+};
 
 const removeAllOrders = (state, action) => {
 	return updateObject(state, {
 		orders: [],
 	})
-}
+};
 
 const reducer = (state = initialState, action) => {
 	switch(action.type) {

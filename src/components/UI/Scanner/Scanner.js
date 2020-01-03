@@ -62,7 +62,7 @@ const mapStateToProps = state => {
 		restaurantId: state.food.restaurantId,
 		tableId: state.food.tableId,
 	}
-}
+};
 
 const mapDispatchToProps = dispatch => {
 	return {

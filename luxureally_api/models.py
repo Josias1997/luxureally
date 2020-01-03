@@ -4,6 +4,16 @@ from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
+PENDING_ORDER = 'PENDING ORDER'
+ORDER_PROCESSED = 'ORDER TREATED'
+ORDER_DELIVERED = 'ORDER DELIVERED'
+
+STATUS_CHOICES = [
+    (PENDING_ORDER, 'PENDING ORDER'),
+    (ORDER_PROCESSED, 'ORDER TREATED'),
+    (ORDER_DELIVERED, 'ORDER DELIVERED')
+]
+
 class Restaurant(models.Model):
     name = models.CharField(max_length=200)
 
@@ -56,16 +66,6 @@ class Food(models.Model):
 
 
 class Order(models.Model):
-    PENDING_ORDER = 'PENDING ORDER'
-    ORDER_PROCESSED = 'ORDER TREATED'
-    ORDER_DELIVERED = 'ORDER DELIVERED'
-
-    STATUS_CHOICES = [
-        (PENDING_ORDER, 'PENDING ORDER'),
-        (ORDER_PROCESSED, 'ORDER TREATED'),
-        (ORDER_DELIVERED, 'ORDER DELIVERED')
-    ]
-
     table = models.ForeignKey(Table, on_delete=models.CASCADE, related_name='orders')
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='orders')
     total_price = models.DecimalField(max_digits=9, decimal_places=2, default=0)
@@ -84,3 +84,17 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f'{self.food.title} - {self.quantity}'
+
+
+class Delivery(models.Model):
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    email = models.EmailField(max_length=255)
+    address = models.CharField(max_length=255)
+    total_price = models.DecimalField(max_digits=9, decimal_places=2, default=0)
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default=PENDING_ORDER)
+    order_details = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'

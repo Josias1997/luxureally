@@ -41,10 +41,9 @@ export const fetchFood = (restaurantId) => {
 		dispatch(requestStart());
 		axios.get('/foods/' + restaurantId)
 		.then(({data}) => {
-			console.log(data);
 			dispatch(fetchFoodSuccess(data));
+			window.location.reload();
 		}).catch(error => {
-			console.log(error);
 			dispatch(requestFail(error));
 		})
 	}
