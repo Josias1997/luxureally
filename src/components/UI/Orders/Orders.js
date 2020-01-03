@@ -11,7 +11,7 @@ class Orders extends Component {
 			for (let i = 0; i < orders.length; i++) {
 				this.props.checkOrdersStatus(orders[i].id);
 			}
-		}, 60 * 1000);
+		}, 5000);
 	}
 
 	componentWillUnmount() {
@@ -25,7 +25,7 @@ class Orders extends Component {
 		        <div className="modal-content">
 		       		<div className="modal-header modal-header-lg dark bg-dark">
 		                <div className="bg-image"><img src="assets/img/photos/modal-add.jpg" alt="" /></div>
-		                <h4 className="modal-title">Your Cart Items</h4>
+		                <h4 className="modal-title">Your Orders</h4>
 		                <button type="button" className="close" data-dismiss="modal" aria-label="Close"><i className="ti-close"></i></button>
 	                </div>
 	                <div className="col-md-12">

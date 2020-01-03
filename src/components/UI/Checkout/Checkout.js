@@ -26,7 +26,6 @@ const Checkout = props => {
                 cartItems.map(cartItem => [cartItem.id, cartItem.quantity])
             ], orderNotes]);
         onOrderPost(order);
-        props.history.push('/order-status');
     };
     const updateQuantity = (id) => {
     	onUpdateItem(id, parseInt(updatedQuantity));
@@ -105,7 +104,7 @@ const Checkout = props => {
                         </div>
                     </div>
                 </div>
-                <button type="button" className="modal-btn btn btn-secondary btn-block btn-lg" data-dismiss="modal">
+                <button onClick={placeOrder} type="button" className="modal-btn btn btn-secondary btn-block btn-lg" data-dismiss="modal">
                 	<span>Order</span>
                 </button>
 	        </div>

@@ -39,7 +39,7 @@ const Form = props => {
             </div>
   
             <button type="button" className="modal-btn btn btn-secondary btn-block btn-lg" data-dismiss="modal">
-            	<span>Add to Cart</span>
+            	<span>Menu</span>
             </button>
         </div>
     </div>
