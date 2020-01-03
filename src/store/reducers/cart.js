@@ -10,7 +10,7 @@ const reducer = (state = initialState, action) => {
 	switch(action.type) {
 		case actionTypes.ADD_ITEM_TO_CART:
 			console.log(action.item);
-			let newItems = [...state.cartItems]
+			let newItems = [...state.cartItems];
 			let itemIndex = newItems.findIndex(item => item.id === action.item.id);
 			if (itemIndex !== -1) {
 				newItems[itemIndex].quantity++;

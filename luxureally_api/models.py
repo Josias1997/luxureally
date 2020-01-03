@@ -99,3 +99,15 @@ class Delivery(models.Model):
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
+
+
+class Addition(models.Model):
+    table = models.ForeignKey(Table, on_delete=models.CASCADE, related_name='additions')
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='additions')
+    total_price = models.DecimalField(max_digits=9, decimal_places=2)
+    status = models.CharField(max_length=20, choices=[
+        ('NON PAID', 'NON PAID'),
+        ('PAID', 'PAID')], default='NON PAID')
+
+    def __str__(self):
+        return f"Addition from table number {self.table.number}"

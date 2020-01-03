@@ -35,6 +35,24 @@ export const requestFail = (error) => {
 	}
 };
 
+export const askAddition = () => {
+	return {
+		type: actionTypes.ASK_ADDITION,
+	}
+};
+
+export const getAddition = (data) => {
+	return dispatch => {
+		dispatch(requestStart());
+		axios.post('/addition/', data)
+			.then(data => {
+				dispatch(askAddition());
+			}).catch(error => {
+				dispatch(requestFail(error));
+		})
+	}
+};
+
 
 export const fetchFood = (restaurantId) => {
 	return dispatch => {

@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import foodReducer from './store/reducers/food';
 import cartReducer from './store/reducers/cart';
+import userReducer from './store/reducers/user';
 import thunk from 'redux-thunk';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -15,6 +16,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 const rootReducer = combineReducers({
 	food: foodReducer,
 	cart: cartReducer,
+	user: userReducer,
 });
 const persistConfig = {
 	key: 'root',

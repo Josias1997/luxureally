@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ordersStatus, cancel, deleteAllOrders } from '../../../store/actions/food';
+import {ordersStatus, deleteAllOrders, getAddition} from '../../../store/actions/food';
+import {createJsonData} from "../../../utils/Methods/createJsonData";
 
 
 class Orders extends Component {
@@ -17,8 +18,14 @@ class Orders extends Component {
 	componentWillUnmount() {
 		clearInterval(this.interval);
 	}
+	askAddition = () => {
+		const { tableId, orders_total_price, onAskAddition } = this.props;
+		const data = createJsonData(['table_id', 'total_price'],
+			[tableId, orders_total_price]);
+		onAskAddition(data);
+	};
 	render() {
-		const { orders, onCancel } = this.props;
+		const { orders, orders_total_price, orders_total_quantity } = this.props;
 		return (
 		<div className="modal fade" id="orders" role="dialog">
 		    <div className="modal-dialog" role="document">
@@ -45,8 +52,21 @@ class Orders extends Component {
 	                    		))
 	                    	}
 	                    </table>
+							<div className="cart-summary">
+                            <div className="row">
+                                <div className="col-7 text-right text-muted">Total Orders:</div>
+                                <div className="col-5"><strong>{orders_total_quantity}</strong></div>
+                            </div>
+                            <div className="row">
+                                <div className="col-7 text-right text-muted">Total Price:</div>
+                                <div className="col-5"><strong>{orders_total_price} DHS</strong></div>
+                            </div>
+                        </div>
 	                </div>
 	            </div>
+				<button onClick={this.askAddition} type="button" className="modal-btn btn btn-secondary btn-block btn-lg" data-dismiss="modal">
+					<span>Ask addition</span>
+				</button>
 		       	</div>
 		    </div>
 		</div>
@@ -57,17 +77,19 @@ class Orders extends Component {
 const mapStateToProps = state => {
 	return {
 		orders: state.food.orders,
+		orders_total_price: state.food.orders_total_price,
+		orders_total_quantity: state.food.orders_total_quantity,
 		restaurantId: state.food.restaurantId,
 		tableId: state.food.tableId,
 	}
 };
 
-const mapDisptachToProps = dispatch => {
+const mapDispatchToProps = dispatch => {
 	return {
 		checkOrdersStatus: (orderId) => dispatch(ordersStatus(orderId)),
-		onCancel: (orderId) =>  dispatch(cancel(orderId)),
 		onDeleteAll: () => dispatch(deleteAllOrders()),
+		onAskAddition: data => dispatch(getAddition(data)),
 	}
-}
+};
 
-export default connect(mapStateToProps, mapDisptachToProps)(Orders);
+export default connect(mapStateToProps, mapDispatchToProps)(Orders);

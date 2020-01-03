@@ -9,6 +9,9 @@ const initialState = {
 	error: null,
 	qrCodeScanned: false,
 	orders: [],
+	orders_total_price: 0,
+	orders_total_quantity: 0,
+	addition_asked: false,
 };
 
 const initializeRestaurantTableIds = (state, action) => {
@@ -40,6 +43,8 @@ const postOrder = (state, action) => {
 		loading: false,
 		error: null,
 		orders: orders,
+		orders_total_price: orders.reduce((acc, order) => acc + parseInt(order.price), 0),
+		orders_total_quantity: orders.length
 	})
 };
 
@@ -51,6 +56,8 @@ const checkStatus = (state, action) => {
 		loading: false,
 		error: null,
 		orders: orders,
+		orders_total_price: orders.reduce((acc, order) => acc + parseInt(order.price), 0),
+		orders_total_quantity: orders.length
 	})
 };
 
@@ -80,6 +87,12 @@ const removeAllOrders = (state, action) => {
 	})
 };
 
+const getAddition = (state, action) => {
+	return updateObject(state, {
+		addition_asked: true,
+	})
+};
+
 const reducer = (state = initialState, action) => {
 	switch(action.type) {
 		case actionTypes.INITIALIZE_RESTAURANT_TABLE_IDS:
@@ -100,6 +113,8 @@ const reducer = (state = initialState, action) => {
 			 return removeAllOrders(state, action);
 		case actionTypes.RESET_DATA:
 			return initialState;
+		case actionTypes.ASK_ADDITION:
+			return getAddition(state, action);
 		default:
 			return state;
 	}

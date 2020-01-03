@@ -68,6 +68,6 @@ const mapDispatchToProps = dispatch => {
 		onInitializeData: (restaurantId, tableId) => dispatch(initializeRestaurantTable(restaurantId, tableId)),
 		onFetchFood: (restaurantId) => dispatch(fetchFood(restaurantId))
 	}
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Scanner);

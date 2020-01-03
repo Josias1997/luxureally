@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, Restaurant, Category, Food, Table, Order, OrderItem
+from .models import User, Restaurant, Category, Food, Table, Order, OrderItem, Addition
 
 # Register your models here.
 
@@ -76,3 +76,12 @@ class OrderAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Order, OrderAdmin)
+
+
+class AdditionAdmin(admin.ModelAdmin):
+    list_display = ('table', 'restaurant', 'total_price', 'status')
+    list_editable = ('status', )
+    search_fields = ('table', 'total_price')
+
+
+admin.site.register(Addition, AdditionAdmin)

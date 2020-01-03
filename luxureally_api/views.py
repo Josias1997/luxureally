@@ -1,11 +1,12 @@
-from django.shortcuts import render
 from django.http import Http404
-from django.core.serializers import serialize
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Category, Food, Order, Restaurant, Table, OrderItem
+from .models import Category, Food, Order, Table, OrderItem, Addition
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your views here.
+
 
 @api_view(['GET'])
 def foods(request, restaurant_id):
@@ -34,8 +35,6 @@ def foods(request, restaurant_id):
 	})
 
 
-
-
 @api_view(['POST'])
 def place_order(request):
 	table_id = int(request.data['table'])
@@ -61,7 +60,6 @@ def place_order(request):
 	})
 
 
-
 @api_view(['GET'])
 def check_status(request, order_id):
 	if Order.objects.filter(id=order_id).exists():
@@ -85,3 +83,27 @@ def cancel_order(request, order_id):
 		})
 	else:
 		raise Http404('Order not found')
+
+
+@api_view(['POST'])
+def ask_for_addition(request):
+	table_id = request.data['table_id']
+	table = None
+	if Table.objects.filter(id=table_id).exists():
+		table = Table.objects.get(id=table_id)
+	total_price = request.data['total_price']
+	addition = Addition(table=table, restaurant=table.restaurant, total_price=total_price)
+	addition.save()
+	return Response({
+		'message': 'OK',
+	})
+
+
+@receiver(post_save, sender=Addition)
+def delete_orders_if_addition_is_paid(sender, instance, created, **kwargs):
+	if instance.status == 'PAID':
+		print(instance.status)
+		table_id = instance.table.id
+		orders = Order.objects.filter(table__id=table_id)
+		for order in orders:
+			order.delete()

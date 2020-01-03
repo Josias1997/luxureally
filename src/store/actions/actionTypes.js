@@ -18,3 +18,9 @@ export const DELETE_ORDER = 'DELETE_ORDER';
 
 export const RESET_DATA = 'RESET_DATA';
 
+export const CHANGE_INPUT = 'CHANGE_INPUT';
+
+
+export const ASK_ADDITION = 'ASK_ADDITION';
+
+
