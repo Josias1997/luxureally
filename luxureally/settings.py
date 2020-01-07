@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['https://luxureally.herokuapp.com/', 'localhost']
 # Application definition
 
 INSTALLED_APPS = [
+    'material.admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,16 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'luxureally_api',
+    'luxureally_frontend',
     'rest_framework',
-    'corsheaders'
+    'django_restful_admin',
+    'webpush',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
-
-
-
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -63,7 +61,7 @@ ROOT_URLCONF = 'luxureally.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,15 +125,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'build/static/'),
-    os.path.join(BASE_DIR, 'build')
-]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_USER_MODEL = 'luxureally_api.User'
+
+WEBPUSH_SETTINGS = {
+   "VAPID_PUBLIC_KEY": "BCeqr4wba6jI_G3O8NVnHQJuCJiNvv34bJ2i1xG34tmzPoh-wLp7kLeuwXPftS-vF2ChNn0zzxt7LKQn0QIY8Jw",
+   "VAPID_PRIVATE_KEY": "Lhc59ToX3_b88ITPjxJ87gCGkKIi69LVX4j4worqThM",
+   "VAPID_ADMIN_EMAIL": "kologojosias@gmail.com"
+}
+

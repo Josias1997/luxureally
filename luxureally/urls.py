@@ -17,11 +17,16 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
-from django.views.generic import TemplateView
+from django_restful_admin import site
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('luxureally/api/', include('luxureally_api.urls'))
+    path('material-admin/', include('material.admin.urls')),
+    path('admin-api/', site.urls),
+    path('luxureally/api/', include('luxureally_api.urls')),
+    path('', include('luxureally_frontend.urls')),
+    path('webpush/', include('webpush.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
