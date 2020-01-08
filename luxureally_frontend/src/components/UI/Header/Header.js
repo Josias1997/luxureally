@@ -17,7 +17,7 @@ const Header = (props) => {
 						</div>
 					</div>
 				</div>
-			</header>
+		</header>
 		<header id="header-mobile" className="light">
 
 			<div className="module module-logo">
@@ -27,7 +27,7 @@ const Header = (props) => {
 			</div>
 
 		</header>
-					</>
+	</>
 	);
 
 };

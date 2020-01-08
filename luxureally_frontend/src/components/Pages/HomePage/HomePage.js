@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Scanner from '../../UI/Scanner/Scanner';
 import BackgroundImage from '../../UI/BackgroundImage/BackgroundImage';
+import ConfirmationModal from '../../UI/ConfirmationModal/ConfirmationModal';
 import Header from '../../UI/Header/Header';
 import Menu from '../../UI/Menu/Menu';
 import Form from '../../UI/Form/Form';

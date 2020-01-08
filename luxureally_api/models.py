@@ -9,9 +9,9 @@ ORDER_PROCESSED = 'ORDER TREATED'
 ORDER_DELIVERED = 'ORDER DELIVERED'
 
 STATUS_CHOICES = [
-    (PENDING_ORDER, 'PENDING ORDER'),
-    (ORDER_PROCESSED, 'ORDER TREATED'),
-    (ORDER_DELIVERED, 'ORDER DELIVERED')
+    (PENDING_ORDER, 'Commande en cours'),
+    (ORDER_PROCESSED, 'Votre commande est prête'),
+    (ORDER_DELIVERED, 'Commande livrée')
 ]
 
 class Restaurant(models.Model):

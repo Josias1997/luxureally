@@ -8,7 +8,7 @@ import cartReducer from './store/reducers/cart';
 import userReducer from './store/reducers/user';
 import adminReducer from './store/reducers/admin';
 import thunk from 'redux-thunk';
-import { BrowserRouter as Router } from 'react-router-dom';
+import BrowserRouter from 'react-router-dom';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { PersistGate } from 'redux-persist/integration/react'
@@ -38,9 +38,9 @@ let persistor = persistStore(store);
 ReactDOM.render(
 	<Provider store={store}>
 		<PersistGate loading={null} persistor={persistor}>
-			<Router>
+			<BrowserRouter>
 				<App />
-			</Router>
+			</BrowserRouter>
 		</PersistGate>
 	</Provider>
 , document.getElementById('root'));

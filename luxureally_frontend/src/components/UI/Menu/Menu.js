@@ -7,7 +7,7 @@ const Menu = props => {
         <div className="page-content">
             <div className="container">
                 <div className="row no-gutters">
-                    <div className="col-md-10 push-md-1" role="tablist">
+                    <div className="col-md-11 push-md-1" role="tablist">
                     {	
                     	props.categories !== undefined ? props.categories.map(category => {
                     		return <Category category={category} key={category.id} foods={category.foods} />

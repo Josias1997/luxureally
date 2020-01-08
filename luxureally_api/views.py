@@ -1,15 +1,11 @@
 from django.http import Http404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import viewsets
 from .models import User, Restaurant, Category, Food, Order, Table, OrderItem, Addition, Delivery
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.http.response import JsonResponse, HttpResponse
-from django.views.decorators.http import require_GET, require_POST
-from django.shortcuts import get_object_or_404
-from django.views.decorators.csrf import csrf_exempt
-from webpush import send_user_notification
-import json
+from . import serializers
 
 
 # Create your views here.
@@ -112,52 +108,45 @@ def cancel_order(request, order_id):
 		raise Http404('Order not found')
 
 
-@api_view(['POST'])
-def ask_for_addition(request):
-	table_id = request.data['table_id']
-	table = None
-	if Table.objects.filter(id=table_id).exists():
-		table = Table.objects.get(id=table_id)
-	total_price = request.data['total_price']
-	addition = Addition(table=table, restaurant=table.restaurant, total_price=total_price)
-	addition.save()
-	return Response({
-		'message': 'OK',
-	})
+# API Viewsets
+class RestaurantViewset(viewsets.ModelViewSet):
+	queryset = Restaurant.objects.all()
+	serializer_class = serializers.RestaurantSerializer
 
 
-@api_view(['GET'])
-def restaurants(request):
-	restaurant_details = []
-	restaurants = Restaurant.objects.all()
-	for restaurant in restaurants:
-		restaurant_details.append({
-			'id': restaurant.id,
-			'name': restaurant.name
-		})
-	return Response({
-		'restaurants': restaurant_details,
-	})
+class TableViewset(viewsets.ModelViewSet):
+	queryset = Table.objects.all()
+	serializer_class = serializers.TableSerializer
 
 
-@require_POST
-@csrf_exempt
-def send_push(request):
-    try:
-        body = request.body
-        data = json.loads(body)
+class OrderViewset(viewsets.ModelViewSet):
+	queryset = Order.objects.all()
+	serializer_class = serializers.OrderSerializer
 
-        if 'head' not in data or 'body' not in data or 'id' not in data:
-            return JsonResponse(status=400, data={"message": "Invalid data format"})
 
-        user_id = data['id']
-        user = get_object_or_404(User, pk=user_id)
-        payload = {'head': data['head'], 'body': data['body']}
-        send_user_notification(user=user, payload=payload, ttl=1000)
+class AdditionViewset(viewsets.ModelViewSet):
+	queryset = Addition.objects.all()
+	serializer_class = serializers.AdditionSerializer
 
-        return JsonResponse(status=200, data={"message": "Web push successful"})
-    except TypeError:
-        return JsonResponse(status=500, data={"message": "An error occurred"})
+
+class DeliveryViewset(viewsets.ModelViewSet):
+	queryset = Delivery.objects.all()
+	serializer_class = serializers.DeliverySerializer
+
+
+class FoodViewset(viewsets.ModelViewSet):
+	queryset = Food.objects.all()
+	serializer_class = serializers.FoodSerializer
+
+
+class UserViewset(viewsets.ModelViewSet):
+	queryset = User.objects.all()
+	serializer_class = serializers.UserSerializer
+
+
+class CategoryViewset(viewsets.ModelViewSet):
+	queryset = Category.objects.all()
+	serializer_class = serializers.CategorySerializer
 
 
 @receiver(post_save, sender=Addition)
