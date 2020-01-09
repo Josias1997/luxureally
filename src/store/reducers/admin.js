@@ -10,7 +10,7 @@ const initialState = {
 	restaurants: [],
 	orders: [],
 	deliveries: [],
-}
+};
 
 const reducer = (state  = initialState, action) => {
 	switch(action.type) {
@@ -41,12 +41,16 @@ const reducer = (state  = initialState, action) => {
 		case actionTypes.FETCH_ORDERS:
 			return updateObject(state, {
 				orders: action.data
-			})
+			});
+			case actionTypes.FETCH_DELIVERIES:
+			return updateObject(state, {
+				deliveries: action.data
+			});
 		case actionTypes.DELETE_USER:
 			return updateObject(state, {
 				users: action.data
 			});
-		case actionTypes.DELETE_CATEGORIE:
+		case actionTypes.DELETE_CATEGORY:
 			return updateObject(state, {
 				categories: action.data
 			});
@@ -78,7 +82,7 @@ const reducer = (state  = initialState, action) => {
 			return updateObject(state, {
 				users: action.data
 			});
-		case actionTypes.UPDATE_CATEGORIE:
+		case actionTypes.UPDATE_CATEGORY:
 			return updateObject(state, {
 				categories: action.data
 			});
@@ -110,7 +114,7 @@ const reducer = (state  = initialState, action) => {
 			return updateObject(state, {
 				users: action.data
 			});
-		case actionTypes.CREATE_CATEGORIE:
+		case actionTypes.CREATE_CATEGORY:
 			return updateObject(state, {
 				categories: action.data
 			});

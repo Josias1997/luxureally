@@ -4,15 +4,16 @@ from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
-PENDING_ORDER = 'PENDING ORDER'
-ORDER_PROCESSED = 'ORDER TREATED'
-ORDER_DELIVERED = 'ORDER DELIVERED'
+PENDING_ORDER = 'COMMANDE EN COURS'
+ORDER_PROCESSED = 'COMMANDE PRETE'
+ORDER_DELIVERED = 'COMMANDE LIVREE'
 
 STATUS_CHOICES = [
     (PENDING_ORDER, 'Commande en cours'),
     (ORDER_PROCESSED, 'Votre commande est prête'),
     (ORDER_DELIVERED, 'Commande livrée')
 ]
+
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=200)

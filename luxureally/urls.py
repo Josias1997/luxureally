@@ -17,14 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django_restful_admin import site
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('luxureally/api/', include('luxureally_api.urls')),
-    path('webpush/', include('webpush.urls')),
-    path('', include('luxureally_frontend.urls')),
 ]
 
 if settings.DEBUG:

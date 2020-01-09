@@ -39,10 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'luxureally_api',
-    'luxureally_frontend',
     'rest_framework',
-    'django_restful_admin',
-    'webpush',
     'corsheaders',
 ]
 

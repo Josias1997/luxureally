@@ -1,6 +1,5 @@
 from django.contrib.admin import ModelAdmin, register, TabularInline
 from .models import User, Restaurant, Category, Food, Table, Order, OrderItem, Addition, Delivery
-from django_restful_admin import site
 
 # Register your models here.
 
@@ -17,16 +16,11 @@ class UserAdmin(ModelAdmin):
     search_fields = ['first_name', 'last_name', 'email']
 
 
-site.register(User)
-
 @register(Restaurant)
 class RestaurantAdmin(ModelAdmin):
     list_display = ('name', 'all_categories', 'all_tables')
     ordering = ['name']
     search_fields = ['name']
-
-
-site.register(Restaurant)
 
 
 @register(Category)
@@ -36,18 +30,12 @@ class CategoryAdmin(ModelAdmin):
     search_fields = ['title', 'created_at', 'restaurant']
 
 
-site.register(Category)
-
-
 @register(Food)
 class FoodAdmin(ModelAdmin):
     list_display = ('title', 'price', 'picture', 'is_active', 'category', 'created_at')
     list_editable = ('price', 'picture', 'category')
     ordering = ['title']
     search_fields = ['title', 'price', 'is_active', 'created_at']
-
-
-site.register(Food)
 
 
 class OrderInline(TabularInline):
@@ -60,9 +48,6 @@ class TableAdmin(ModelAdmin):
     list_editable = ('restaurant',)
     ordering = ['number']
     search_fields = ['number', 'restaurant']
-
-
-site.register(Table)
 
 
 class OrderItemInline(TabularInline):
@@ -79,17 +64,11 @@ class OrderAdmin(ModelAdmin):
     ]
 
 
-site.register(Order)
-
-
 @register(Addition)
 class AdditionAdmin(ModelAdmin):
     list_display = ('table', 'restaurant', 'total_price', 'status')
     list_editable = ('status', )
     search_fields = ('table', 'total_price')
-
-
-site.register(Addition)
 
 
 @register(Delivery)
@@ -98,5 +77,3 @@ class DeliveryAdmin(ModelAdmin):
     list_editable = ('status', )
     search_fields = ('restaurant', 'first_name', 'last_name', 'email', 'status')
 
-
-site.register(Delivery)

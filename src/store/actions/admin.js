@@ -8,17 +8,17 @@ export const fetchData = (data, url) => {
 			return {
 		 		type: actionTypes.FETCH_USERS,
 		 		data: data
-		 	}
+		 	};
 		case '/category/':
 		 	return {
 		 		type: actionTypes.FETCH_CATEGORIES,
 		 		data: data
-		 	}
+		 	};
 		case '/restaurant/':
 			return {
 		 		type: actionTypes.FETCH_RESTAURANTS,
 		 		data: data
-		 	}
+		 	};
 		case '/order/':
 		 	return {
 		 		type: actionTypes.FETCH_ORDERS,
@@ -28,13 +28,12 @@ export const fetchData = (data, url) => {
 		 	return {
 		 		type: actionTypes.FETCH_TABLES,
 		 		data: data
-		 	}
+		 	};
 		case '/addition/':
 			return {
 		 		type: actionTypes.FETCH_ADDITIONS,
 		 		data: data
-	 		}
-			break;
+	 		};
 		case '/food/':
 			return {
 		 		type: actionTypes.FETCH_FOODS,
@@ -44,7 +43,7 @@ export const fetchData = (data, url) => {
 			return {
 				type: actionTypes.FETCH_DELIVERIES,
 				data: data,
-			}
+			};
  		default:
  			break;
 	}
@@ -59,7 +58,7 @@ export const createData = (data, url) => {
 		 	}
 		case '/category/':
 		 	return {
-		 		type: actionTypes.CREATE_CATEGORIE,
+		 		type: actionTypes.CREATE_CATEGORY,
 		 		data: data
 		 	}
 		case '/restaurant/':
@@ -79,10 +78,9 @@ export const createData = (data, url) => {
 		 	}
 		case '/addition/':
 			return {
-		 		type: actionTypes.CREATE_ADDITION,
-		 		data: data
-	 		}
-			break;
+				type: actionTypes.CREATE_ADDITION,
+				data: data
+			};
 		case '/food/':
 			return {
 		 		type: actionTypes.CREATE_FOOD,
@@ -92,7 +90,7 @@ export const createData = (data, url) => {
 					return {
 						type: actionTypes.CREATE_DELIVERY,
 						data: data,
-					}
+					};
  		default:
  			break;
 	}
@@ -107,7 +105,7 @@ export const updateData = (data, url) => {
 		 	}
 		case '/category/':
 		 	return {
-		 		type: actionTypes.UPDATE_CATEGORIE,
+		 		type: actionTypes.UPDATE_CATEGORY,
 		 		data: data
 		 	}
 		case '/restaurant/':
@@ -127,10 +125,9 @@ export const updateData = (data, url) => {
 		 	}
 		case '/addition/':
 			return {
-		 		type: actionTypes.UPDATE_ADDITION,
-		 		data: data
-	 		}
-			break;
+				type: actionTypes.UPDATE_ADDITION,
+				data: data
+			};
 		case '/food/':
 			return {
 		 		type: actionTypes.UPDATE_FOOD,
@@ -140,7 +137,7 @@ export const updateData = (data, url) => {
 					return {
 						type: actionTypes.UPDATE_DELIVERY,
 						data: data,
-					}
+					};
  		default:
  			break;
 	}
@@ -155,7 +152,7 @@ export const deleteData = (data, url) => {
 		 	}
 		case '/category/':
 		 	return {
-		 		type: actionTypes.DELETE_CATEGORIE,
+		 		type: actionTypes.DELETE_CATEGORY,
 		 		data: data
 		 	}
 		case '/restaurant/':
@@ -175,10 +172,9 @@ export const deleteData = (data, url) => {
 		 	}
 		case '/addition/':
 			return {
-		 		type: actionTypes.DELETE_ADDITION,
-		 		data: data
-	 		}
-			break;
+				type: actionTypes.DELETE_ADDITION,
+				data: data
+			}
 		case '/food/':
 			return {
 		 		type: actionTypes.DELETE_FOOD,
@@ -188,7 +184,7 @@ export const deleteData = (data, url) => {
 				return {
 					type: actionTypes.DELETE_DELIVERY,
 					data: data,
-				}
+				};
  		default:
  			break;
 	}
