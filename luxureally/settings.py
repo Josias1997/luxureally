@@ -31,7 +31,6 @@ ALLOWED_HOSTS = ['https://luxureally.herokuapp.com/', 'localhost']
 # Application definition
 
 INSTALLED_APPS = [
-    'material.admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +40,7 @@ INSTALLED_APPS = [
     'luxureally_api',
     'rest_framework',
     'corsheaders',
+    'channels',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -58,6 +58,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'luxureally.urls'
+
+ASGI_APPLICATION = "luxureally.routing.application"
 
 TEMPLATES = [
     {

@@ -1,1 +1,0 @@
-export const FILES_BASE_DIR = 'http://localhost:8000';

@@ -160,6 +160,7 @@ def delete_orders_if_addition_is_paid(sender, instance, created, **kwargs):
 
 
 
+
 @receiver(post_save, sender=Order)
 def send_push_notification(sender, instance, **kwargs):
 	pass

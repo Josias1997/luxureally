@@ -3,8 +3,11 @@
     <words>
       <w>axios</w>
       <w>colorlib</w>
+      <w>corsheaders</w>
       <w>csrftoken</w>
       <w>luxureally</w>
+      <w>navbar</w>
+      <w>webpush</w>
     </words>
   </dictionary>
 </component>
