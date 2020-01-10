@@ -13,12 +13,12 @@ class WebSocketService {
 	}
 
 	connect() {
-		const path = 'ws://127.0.0.1:8000/ws/orders/';
+		const path = 'ws://127.0.0.1:8000/ws/orders/updates/';
 		this.socketRef = new WebSocket(path);
 		this.socketRef.onopen = () => {
 			console.log('WebSocket opened');
 			this.socketRef.send(JSON.stringify({
-				'message': 'This is a request'
+				message: 'This is a request'
 			}));
 		}
 

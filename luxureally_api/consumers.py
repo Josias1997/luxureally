@@ -1,21 +1,34 @@
-from channels.generic.websocket import WebsocketConsumer
+from channels.generic.websocket import AsyncWebsocketConsumer
 import json
+from asgiref.sync import async_to_sync
 
 
-class OrderConsumer(WebsocketConsumer):
-	def connect(self):
-		self.accept()
+class OrderConsumer(AsyncWebsocketConsumer):
+	async def connect(self):
+		await self.channel_layer.group_add(
+			'updates',
+			self.channel_name,
+		)
+		await self.accept()
 
 
-	def disconnect(self, close_code):
-		pass
+	async def disconnect(self, close_code):
+		await self.channel_layer.group_discard(
+			'updates',
+			self.channel_name
+		)
 
 
-	def receive(self, text_data):
+	async def receive(self, text_data):
 		text_data_json = json.loads(text_data)
 		message = text_data_json['message']
 
-
-		self.send(text_data=json.dumps({
+		await self.send(text_data=json.dumps({
 			'message': message
 		}))
+
+
+	async def send_message(self, event):
+		data = event['data']
+
+		await self.send(text_data=json.dumps(data))

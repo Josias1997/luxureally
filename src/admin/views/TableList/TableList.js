@@ -40,7 +40,7 @@ const TableList = props => {
       }
   });
   return (
-    <MaterialTable columns={columns} data={data}
+    <MaterialTable columns={columns} data={data.reverse()}
                    options={{
                        sorting: true,
                        filtering: true,

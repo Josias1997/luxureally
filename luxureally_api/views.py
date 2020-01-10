@@ -6,7 +6,8 @@ from .models import User, Restaurant, Category, Food, Order, Table, OrderItem, A
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from . import serializers
-
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
 
 # Create your views here.
 
@@ -149,6 +150,15 @@ class CategoryViewset(viewsets.ModelViewSet):
 	serializer_class = serializers.CategorySerializer
 
 
+
+def send_notification(event):
+	data = event['data']
+	async_to_sync(get_channel_layer().send)(text_data=json.dumps(
+		data
+	))
+
+
+
 @receiver(post_save, sender=Addition)
 def delete_orders_if_addition_is_paid(sender, instance, created, **kwargs):
 	if instance.status == 'PAID':
@@ -163,4 +173,35 @@ def delete_orders_if_addition_is_paid(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=Order)
 def send_push_notification(sender, instance, **kwargs):
-	pass
+	if created:
+		group_name = 'updates'
+		message = {
+			'id': instance.id,
+			'price': str(instance.total_price),
+			'status': instance.status,
+		}
+		async_to_sync(get_channel_layer().group_send)(
+			group_name,
+			{
+				'type': 'send_message',
+				'data': message
+			}
+		)
+
+
+@receiver(post_save, sender=Delivery)
+def send_push_notification(sender, instance, created, **kwargs):
+	if created:
+		group_name = 'updates'
+		message = {
+			'id': instance.id,
+			'price': str(instance.total_price),
+			'status': instance.status,
+		}
+		async_to_sync(get_channel_layer().group_send)(
+			group_name,
+			{
+				'type': 'send_message',
+				'data': message
+			}
+		)
