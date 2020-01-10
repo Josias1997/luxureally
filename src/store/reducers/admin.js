@@ -10,6 +10,8 @@ const initialState = {
 	restaurants: [],
 	orders: [],
 	deliveries: [],
+	loading: false,
+	error: null,
 };
 
 const reducer = (state  = initialState, action) => {
@@ -138,10 +140,23 @@ const reducer = (state  = initialState, action) => {
 			return updateObject(state, {
 				orders: action.data
 			})
-			case actionTypes.CREATE_DELIVERY:
-				return updateObject(state, {
+		case actionTypes.CREATE_DELIVERY:
+			return updateObject(state, {
 					orders: action.data
-				})
+			});
+		case actionTypes.PROCESSING_REQUEST:
+			return updateObject(state, {
+				loading: true,
+			})
+		case actionTypes.REQUEST_FAILED:
+			return updateObject(state, {
+				loading: false,
+				error: action.error.message
+			})
+		case actionTypes.REQUEST_SUCCEED:
+			return updateObject(state, {
+				loading: false,
+			})
 		default:
 			return state;
 	}

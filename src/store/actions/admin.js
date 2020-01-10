@@ -2,6 +2,26 @@ import * as actionTypes from './adminActionTypes';
 import axios from './../../instanceAxios';
 
 
+export const processingRequest = () => {
+	return {
+		type: actionTypes.PROCESSING_REQUEST,
+	}
+};
+
+export const requestSucceed = () => {
+	return {
+		type: actionTypes.REQUEST_SUCCEED,
+	}
+}
+
+export const requestFail = (error) => {
+	return {
+		type: actionTypes.REQUEST_FAILED,
+		error: error
+	}
+}
+
+
 export const fetchData = (data, url) => {
 	switch(url) {
 		case '/user/':
@@ -193,12 +213,13 @@ export const deleteData = (data, url) => {
 
 export const fetch = (url) => {
 	return dispatch => {
+		dispatch(processingRequest());
 		axios.get(url)
 		.then(({data}) => {
-			console.log(data);
 			dispatch(fetchData(data, url))
 		}).catch(error => {
 			console.log(error.message);
+			dispatch(requestFail(error))
 		})
 	}
 };
@@ -239,4 +260,3 @@ export const del = url => {
 		})
 	}
 };
-

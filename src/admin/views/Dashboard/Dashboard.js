@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef} from "react";
 // @material-ui/core
 import { makeStyles } from "@material-ui/core/styles";
 import Icon from "@material-ui/core/Icon";
@@ -20,7 +20,8 @@ import CardIcon from "./../../components/Card/CardIcon.js";
 import CardBody from "./../../components/Card/CardBody.js";
 import CardFooter from "./../../components/Card/CardFooter.js";
 import { connect } from "react-redux";
-import { fetch } from "../../../store/actions/admin";
+import { fetch, requestSucceed } from "../../../store/actions/admin";
+import WebSocketInstance from './../../../websocket';
 
 import styles from "./../../assets/jss/material-dashboard-react/views/dashboardStyle.js";
 
@@ -28,6 +29,8 @@ const useStyles = makeStyles(styles);
 
 const Dashboard = props => {
   useEffect(() => {
+    console.log('OK');
+    WebSocketInstance.connect();
     props.onFetch('/order/');
     props.onFetch('/delivery/');
     props.onFetch('/user/');
@@ -35,9 +38,10 @@ const Dashboard = props => {
     props.onFetch('/table/');
     props.onFetch('/category/');
     props.onFetch('/food/');
-    props.onFetch('/tables/');
     props.onFetch('/addition/');
+    props.onRequestSucceed();
   }, []);
+
   const classes = useStyles();
   return (
     <div>
@@ -66,7 +70,8 @@ const Dashboard = props => {
           </Card>
         </GridItem>
         <GridItem xs={12} sm={6} md={3}>
-          <Card>
+        {
+          props.deliveries !== undefined ? <Card>
             <CardHeader color="success" stats icon>
               <CardIcon color="success">
                 <Store />
@@ -80,7 +85,8 @@ const Dashboard = props => {
                 Last 24 Hours
               </div>
             </CardFooter>
-          </Card>
+          </Card> : null
+        }
         </GridItem>
         <GridItem xs={12} sm={6} md={3}>
           <Card>
@@ -146,7 +152,8 @@ const Dashboard = props => {
           </Card>
         </GridItem>
         <GridItem xs={12} sm={12} md={12}>
-          <Card>
+        {
+          props.deliveries !== undefined ?  <Card>
             <CardHeader color="info">
               <h4 className={classes.cardTitleWhite}>Deliveries</h4>
               <p className={classes.cardCategoryWhite}>
@@ -170,7 +177,8 @@ const Dashboard = props => {
 
               />
             </CardBody>
-          </Card>
+          </Card> : null
+        }
         </GridItem>
       </GridContainer>
     </div>
@@ -183,12 +191,15 @@ const mapStateToProps = state => {
     deliveries: state.admin.deliveries,
     users: state.admin.users,
     restaurants: state.admin.restaurants,
+    loading: state.admin.loading,
+    error: state.admin.error,
   }
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     onFetch: url => dispatch(fetch(url)),
+    onRequestSucceed: () => dispatch(requestSucceed())
   }
 };
 
