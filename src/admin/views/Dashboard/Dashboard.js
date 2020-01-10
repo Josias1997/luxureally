@@ -22,14 +22,14 @@ import CardFooter from "./../../components/Card/CardFooter.js";
 import { connect } from "react-redux";
 import { fetch, requestSucceed } from "../../../store/actions/admin";
 import WebSocketInstance from './../../../websocket';
-
+import { NotificationContainer } from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 import styles from "./../../assets/jss/material-dashboard-react/views/dashboardStyle.js";
 
 const useStyles = makeStyles(styles);
 
 const Dashboard = props => {
   useEffect(() => {
-    console.log('OK');
     WebSocketInstance.connect();
     props.onFetch('/order/');
     props.onFetch('/delivery/');
@@ -45,6 +45,7 @@ const Dashboard = props => {
   const classes = useStyles();
   return (
     <div>
+    <NotificationContainer />
       <GridContainer>
         <GridItem xs={12} sm={6} md={3}>
           <Card>

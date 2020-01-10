@@ -12,6 +12,8 @@ const initialState = {
 	deliveries: [],
 	loading: false,
 	error: null,
+	notificationMessage: '',
+	serviceWorker: null,
 };
 
 const reducer = (state  = initialState, action) => {
@@ -156,6 +158,10 @@ const reducer = (state  = initialState, action) => {
 		case actionTypes.REQUEST_SUCCEED:
 			return updateObject(state, {
 				loading: false,
+			})
+		case actionTypes.NOTIFY_USER:
+			return updateObject(state, {
+				notificationMessage: action.message
 			})
 		default:
 			return state;

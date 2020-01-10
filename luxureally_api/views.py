@@ -178,6 +178,7 @@ def send_push_notification(sender, instance, **kwargs):
 		message = {
 			'id': instance.id,
 			'price': str(instance.total_price),
+			'table': instance.table.number,
 			'status': instance.status,
 		}
 		async_to_sync(get_channel_layer().group_send)(
@@ -196,6 +197,7 @@ def send_push_notification(sender, instance, created, **kwargs):
 		message = {
 			'id': instance.id,
 			'price': str(instance.total_price),
+			'user': instance.first_name + ' ' + instance.last_name,
 			'status': instance.status,
 		}
 		async_to_sync(get_channel_layer().group_send)(

@@ -21,6 +21,13 @@ export const requestFail = (error) => {
 	}
 }
 
+export const notifyUser = (message) => {
+	return {
+		type: actionTypes.NOTIFY_USER,
+		message: message,
+	}
+}
+
 
 export const fetchData = (data, url) => {
 	switch(url) {

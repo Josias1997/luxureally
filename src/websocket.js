@@ -1,5 +1,8 @@
+import { NotificationManager } from 'react-notifications';
+
 class WebSocketService {
 	static instance = null;
+	static notification = '';
 	callbacks = {};
 	static getInstance() {
 		if (!WebSocketService.instance) {
@@ -10,6 +13,7 @@ class WebSocketService {
 
 	constructor() {
 		this.socketRef = null;
+		this.permission = null;
 	}
 
 	connect() {
@@ -22,8 +26,13 @@ class WebSocketService {
 			}));
 		}
 
-		this.socketRef.onmessage = e => {
-			console.log(e.data);
+		this.socketRef.onmessage = event => {
+			const data = JSON.parse(event.data);
+			if (data.id !== undefined) {
+				let audio = new Audio('just-saying.mp3')
+				NotificationManager.info("New Order: " + data.price);
+				audio.play();
+			}
 		}
 
 		this.socketRef.onerror = e => {
@@ -36,7 +45,9 @@ class WebSocketService {
 		};
 
 	}
-}
+
+
+};
 
 const WebSocketInstance = WebSocketService.getInstance();
 

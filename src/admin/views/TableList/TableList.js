@@ -1,8 +1,13 @@
-import React from "react";
+import React, {useEffect} from "react";
 import MaterialTable from "material-table";
 import { connect } from 'react-redux';
+import WebSocketInstance from './../../../websocket';
 
 const TableList = props => {
+
+  useEffect(() => {
+
+  })
   const {pathname} = props.location;
   let data = [];
   switch(pathname) {
