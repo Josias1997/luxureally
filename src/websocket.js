@@ -29,7 +29,7 @@ class WebSocketService {
 		this.socketRef.onmessage = event => {
 			const data = JSON.parse(event.data);
 			if (data.id !== undefined) {
-				let audio = new Audio('just-saying.mp3')
+				let audio = new Audio('/just-saying.mp3');
 				NotificationManager.info("New Order: " + data.price + 'DHS');
 				audio.play();
 			}
